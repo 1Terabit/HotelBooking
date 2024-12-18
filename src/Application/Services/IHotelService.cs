@@ -1,9 +1,9 @@
-// Application/Services/IHotelService.cs
-namespace HotelBooking.Application.Services
+public interface IHotelService
 {
-    public interface IHotelService
-    {
-        // Define los métodos necesarios
-    }
+    Task<IEnumerable<HotelDto>> GetAllHotelsAsync();
+    Task<HotelDto?> GetHotelByIdAsync(Guid id);
+    Task<HotelDto> CreateHotelAsync(CreateHotelDto createHotelDto);
+    Task UpdateHotelAsync(Guid id, CreateHotelDto updateHotelDto);
+    Task DeleteHotelAsync(Guid id);
+    Task<IEnumerable<HotelDto>> GetHotelsByLocationAsync(string city, string country);
 }
-
