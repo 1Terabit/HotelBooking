@@ -1,14 +1,25 @@
-using System;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
-namespace HotelBooking.Domain.Entities
+namespace HotelBooking.Domain.Entities;
+public class Guest
 {
-    public class Guest
-    {
-        public Guid Id { get; set; }
-        public required string FirstName { get; set; }
-        public required string LastName { get; set; }
-        public required string Email { get; set; }
-        public required string PhoneNumber { get; set; }
-    }
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string Id { get; set; }
 
+    [BsonElement("firstName")]
+    public string FirstName { get; set; }
+
+    [BsonElement("lastName")]
+    public string LastName { get; set; }
+
+    [BsonElement("email")]
+    public string Email { get; set; }
+
+    [BsonElement("phone")]
+    public string Phone { get; set; }
+
+    [BsonElement("emergencyContact")]
+    public EmergencyContact EmergencyContact { get; set; }
 }

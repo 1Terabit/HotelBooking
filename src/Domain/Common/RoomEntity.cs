@@ -1,8 +1,10 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using HotelBooking.Domain.Enums;
 
 namespace HotelBooking.Domain.Entities;
-public class Reservation
+
+public class Reservation : IAuditableEntity
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
@@ -27,5 +29,12 @@ public class Reservation
     public decimal TotalPrice { get; set; }
 
     [BsonElement("status")]
-    public string Status { get; set; }
+    [BsonRepresentation(BsonType.String)]
+    public ReservationStatus Status { get; set; }
+
+    [BsonElement("createdAt")]
+    public DateTime CreatedAt { get; set; }
+
+    [BsonElement("updatedAt")]
+    public DateTime? UpdatedAt { get; set; }
 }

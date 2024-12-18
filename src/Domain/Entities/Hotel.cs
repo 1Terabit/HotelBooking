@@ -1,14 +1,23 @@
-using System;
-using System.Collections.Generic;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
-namespace HotelBooking.Domain.Entities
+namespace HotelBooking.Domain.Entities;
+
+public class Hotel
 {
-    public class Hotel
-    {
-        public Guid Id { get; set; }
-        public required string Name { get; set; }
-        public required string Location { get; set; }
-        public bool IsActive { get; set; }
-        public required ICollection<Room> Rooms { get; set; }
-    }
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string Id { get; set; }
+
+    [BsonElement("name")]
+    public string Name { get; set; }
+
+    [BsonElement("address")]
+    public string Address { get; set; }
+
+    [BsonElement("rating")]
+    public int Rating { get; set; }
+
+    [BsonElement("rooms")]
+    public List<Room> Rooms { get; set; } = new();
 }

@@ -1,56 +1,67 @@
-public class HotelService : IHotelService
+namespace HotelBooking.Application.Services
 {
-    private readonly IHotelRepository _hotelRepository;
-    private readonly IMapper _mapper;
-
-    public HotelService(IHotelRepository hotelRepository, IMapper mapper)
+    public class HotelService : IHotelService
     {
-        _hotelRepository = hotelRepository;
-        _mapper = mapper;
-    }
+        private readonly IHotelRepository _hotelRepository;
+        private readonly IMapper _mapper;
 
-    public async Task<IEnumerable<HotelDto>> GetAllHotelsAsync()
-    {
-        var hotels = await _hotelRepository.GetHotelsWithRoomsAsync();
-        return _mapper.Map<IEnumerable<HotelDto>>(hotels);
-    }
+        public HotelService(IHotelRepository hotelRepository, IMapper mapper)
+        {
+            _hotelRepository = hotelRepository;
+            _mapper = mapper;
+        }
 
-    public async Task<HotelDto?> GetHotelByIdAsync(Guid id)
-    {
-        var hotel = await _hotelRepository.GetHotelWithRoomsAsync(id);
-        return _mapper.Map<HotelDto>(hotel);
-    }
+        public async Task<IEnumerable<HotelDto>> GetAllHotelsAsync()
+        {
+            var hotels = await _hotelRepository.GetAllAsync();
+            return _mapper.Map<IEnumerable<HotelDto>>(hotels);
+        }
 
-    public async Task<HotelDto> CreateHotelAsync(CreateHotelDto createHotelDto)
-    {
-        var hotel = _mapper.Map<Hotel>(createHotelDto);
-        await _hotelRepository.AddAsync(hotel);
-        await _hotelRepository.SaveChangesAsync();
-        return _mapper.Map<HotelDto>(hotel);
-    }
+        public async Task<HotelDto> GetHotelByIdAsync(string id)
+        {
+            var hotel = await _hotelRepository.GetByIdAsync(id);
+            if (hotel == null)
+                throw new NotFoundException($"Hotel with ID {id} not found");
 
-    public async Task UpdateHotelAsync(Guid id, CreateHotelDto updateHotelDto)
-    {
-        var hotel = await _hotelRepository.GetByIdAsync(id);
-        if (hotel == null) throw new NotFoundException($"Hotel with ID {id} not found");
+            return _mapper.Map<HotelDto>(hotel);
+        }
 
-        _mapper.Map(updateHotelDto, hotel);
-        await _hotelRepository.UpdateAsync(hotel);
-        await _hotelRepository.SaveChangesAsync();
-    }
+        public async Task<HotelDto> CreateHotelAsync(CreateHotelDto hotelDto)
+        {
+            var hotel = _mapper.Map<Hotel>(hotelDto);
+            await _hotelRepository.CreateAsync(hotel);
+            return _mapper.Map<HotelDto>(hotel);
+        }
 
-    public async Task DeleteHotelAsync(Guid id)
-    {
-        var hotel = await _hotelRepository.GetByIdAsync(id);
-        if (hotel == null) throw new NotFoundException($"Hotel with ID {id} not found");
+        public async Task UpdateHotelAsync(string id, UpdateHotelDto hotelDto)
+        {
+            var existingHotel = await _hotelRepository.GetByIdAsync(id);
+            if (existingHotel == null)
+                throw new NotFoundException($"Hotel with ID {id} not found");
 
-        await _hotelRepository.DeleteAsync(hotel);
-        await _hotelRepository.SaveChangesAsync();
-    }
+            var hotel = _mapper.Map<Hotel>(hotelDto);
+            hotel.Id = id;
+            await _hotelRepository.UpdateAsync(id, hotel);
+        }
 
-    public async Task<IEnumerable<HotelDto>> GetHotelsByLocationAsync(string city, string country)
-    {
-        var hotels = await _hotelRepository.GetHotelsByLocationAsync(city, country);
-        return _mapper.Map<IEnumerable<HotelDto>>(hotels);
+        public async Task DeleteHotelAsync(string id)
+        {
+            if (!await _hotelRepository.ExistsAsync(id))
+                throw new NotFoundException($"Hotel with ID {id} not found");
+
+            await _hotelRepository.DeleteAsync(id);
+        }
+
+        public async Task<IEnumerable<HotelDto>> GetHotelsByRatingAsync(int rating)
+        {
+            var hotels = await _hotelRepository.GetHotelsByRatingAsync(rating);
+            return _mapper.Map<IEnumerable<HotelDto>>(hotels);
+        }
+
+        public async Task<IEnumerable<RoomDto>> GetRoomsByHotelIdAsync(string hotelId)
+        {
+            var rooms = await _hotelRepository.GetRoomsByHotelIdAsync(hotelId);
+            return _mapper.Map<IEnumerable<RoomDto>>(rooms);
+        }
     }
 }

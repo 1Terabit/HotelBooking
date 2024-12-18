@@ -1,42 +1,43 @@
+using MongoDB.Driver;
+using HotelBooking.Domain.Interfaces;
+
+namespace HotelBooking.Infrastructure.Repositories.MongoDb;
+
 public class Repository<T> : IRepository<T> where T : class
 {
-    protected readonly ApplicationDbContext _context;
-    protected readonly DbSet<T> _dbSet;
+    protected readonly IMongoCollection<T> _collection;
 
-    public Repository(ApplicationDbContext context)
+    public Repository(MongoDbContext context, string collectionName)
     {
-        _context = context;
-        _dbSet = context.Set<T>();
+        _collection = context._database.GetCollection<T>(collectionName);
     }
 
-    public virtual async Task<T?> GetByIdAsync(Guid id)
+    public async Task<IEnumerable<T>> GetAllAsync()
     {
-        return await _dbSet.FindAsync(id);
+        return await _collection.Find(_ => true).ToListAsync();
     }
 
-    public virtual async Task<IEnumerable<T>> GetAllAsync()
+    public async Task<T> GetByIdAsync(string id)
     {
-        return await _dbSet.ToListAsync();
+        var filter = Builders<T>.Filter.Eq("_id", id);
+        return await _collection.Find(filter).FirstOrDefaultAsync();
     }
 
-    public virtual async Task<T> AddAsync(T entity)
+    public async Task<T> CreateAsync(T entity)
     {
-        await _dbSet.AddAsync(entity);
+        await _collection.InsertOneAsync(entity);
         return entity;
     }
 
-    public virtual async Task UpdateAsync(T entity)
+    public async Task UpdateAsync(string id, T entity)
     {
-        _dbSet.Update(entity);
+        var filter = Builders<T>.Filter.Eq("_id", id);
+        await _collection.ReplaceOneAsync(filter, entity);
     }
 
-    public virtual async Task DeleteAsync(T entity)
+    public async Task DeleteAsync(string id)
     {
-        _dbSet.Remove(entity);
-    }
-
-    public async Task SaveChangesAsync()
-    {
-        await _context.SaveChangesAsync();
+        var filter = Builders<T>.Filter.Eq("_id", id);
+        await _collection.DeleteOneAsync(filter);
     }
 }

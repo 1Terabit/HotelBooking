@@ -1,10 +1,9 @@
-namespace HotelBooking.Domain.Enums
+namespace HotelBooking.Domain.Enums;
+
+public enum RoomType
 {
-    public enum RoomType
-    {
-        Single,
-        Double,
-        Suite,
-        Deluxe
-    }
+    Single = 0,
+    Double = 1,
+    Suite = 2,
+    Deluxe = 3
 }

@@ -1,5 +1,7 @@
+using System.Text.Json.Serialization; 
 using HotelBooking.API.Configuration;
-using HotelBooking.API.Configuration.db;
+using HotelBooking.Infrastructure.Data.MongoDb; 
+using Microsoft.Extensions.Options; 
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,12 +12,17 @@ builder.Services
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     });
 
+builder.Services.Configure<MongoDbSettings>(
+    builder.Configuration.GetSection("MongoDbSettings"));
+
+builder.Services.AddSingleton<MongoDbContext>();
+
 builder.Services
     .AddRepositories()
     .AddApplicationServices()
     .AddSwaggerServices()
-    .AddCustomCors()
-    .AddDatabaseConfiguration(builder.Configuration);
+    .AddCustomCors();
+
 
 var app = builder.Build();
 
@@ -23,7 +30,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    await app.ApplyMigrations();
+
+    using (var scope = app.Services.CreateScope())
+    {
+        var mongoContext = scope.ServiceProvider.GetRequiredService<MongoDbContext>();
+        await mongoContext.InitializeAsync();
+    }
 }
 
 app.UseHttpsRedirection();

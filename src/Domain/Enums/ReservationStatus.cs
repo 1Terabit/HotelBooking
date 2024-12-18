@@ -1,10 +1,9 @@
-namespace HotelBooking.Domain.Enums
+namespace HotelBooking.Domain.Enums;
+
+public enum ReservationStatus
 {
-    public enum ReservationStatus
-    {
-        Pending,
-        Confirmed,
-        Cancelled,
-        Completed
-    }
+    Pending = 0,
+    Confirmed = 1,
+    Cancelled = 2,
+    Completed = 3
 }

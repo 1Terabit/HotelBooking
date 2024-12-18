@@ -1,38 +1,35 @@
+using MongoDB.Driver;
+using HotelBooking.Domain.Entities;
+using HotelBooking.Domain.Interfaces;
+
+namespace HotelBooking.Infrastructure.Repositories.MongoDb;
+
 public class ReservationRepository : Repository<Reservation>, IReservationRepository
 {
-    public ReservationRepository(ApplicationDbContext context) : base(context)
+    private readonly IMongoCollection<Reservation> _reservations;
+
+    public ReservationRepository(MongoDbContext context) : base(context, "Reservations")
     {
+        _reservations = context.Reservations;
     }
 
-    public async Task<IEnumerable<Reservation>> GetReservationsByGuestIdAsync(Guid guestId)
+    public async Task<IEnumerable<Reservation>> GetReservationsByGuestIdAsync(string guestId)
     {
-        return await _context.Reservations
-            .Where(r => r.GuestId == guestId)
-            .Include(r => r.Room)
-                .ThenInclude(r => r.Hotel)
-            .Include(r => r.Guest)
-            .OrderByDescending(r => r.CheckInDate)
-            .ToListAsync();
+        return await _reservations.Find(r => r.GuestId == guestId).ToListAsync();
     }
 
-    public async Task<IEnumerable<Reservation>> GetActiveReservationsAsync()
+    public async Task<IEnumerable<Reservation>> GetReservationsByRoomIdAsync(string roomId)
     {
-        var currentDate = DateTime.UtcNow.Date;
-        return await _context.Reservations
-            .Where(r => r.CheckOutDate >= currentDate)
-            .Include(r => r.Room)
-                .ThenInclude(r => r.Hotel)
-            .Include(r => r.Guest)
-            .OrderBy(r => r.CheckInDate)
-            .ToListAsync();
+        return await _reservations.Find(r => r.RoomId == roomId).ToListAsync();
     }
 
-    public override async Task<Reservation?> GetByIdAsync(Guid id)
+    public async Task<IEnumerable<Reservation>> GetReservationsForDateRangeAsync(DateTime startDate, DateTime endDate)
     {
-        return await _context.Reservations
-            .Include(r => r.Room)
-                .ThenInclude(r => r.Hotel)
-            .Include(r => r.Guest)
-            .FirstOrDefaultAsync(r => r.Id == id);
+        var filter = Builders<Reservation>.Filter.And(
+            Builders<Reservation>.Filter.Lte(r => r.CheckInDate, endDate),
+            Builders<Reservation>.Filter.Gte(r => r.CheckOutDate, startDate)
+        );
+
+        return await _reservations.Find(filter).ToListAsync();
     }
 }

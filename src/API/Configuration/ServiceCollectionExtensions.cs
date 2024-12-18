@@ -1,3 +1,11 @@
+using Microsoft.OpenApi.Models;
+using AutoMapper;
+using HotelBooking.Application.Services;
+using HotelBooking.Application.Interfaces;
+using HotelBooking.Application.Mappings;
+using HotelBooking.Domain.Interfaces;
+using HotelBooking.Infrastructure.Repositories.MongoDb;
+
 namespace HotelBooking.API.Configuration;
 
 public static class ServiceCollectionExtensions
@@ -6,8 +14,8 @@ public static class ServiceCollectionExtensions
     {
         services.AddScoped<IHotelRepository, HotelRepository>();
         services.AddScoped<IRoomRepository, RoomRepository>();
-        services.AddScoped<IReservationRepository, ReservationRepository>();
         services.AddScoped<IGuestRepository, GuestRepository>();
+        services.AddScoped<IReservationRepository, ReservationRepository>();
 
         return services;
     }
@@ -33,7 +41,7 @@ public static class ServiceCollectionExtensions
             {
                 Title = "Hotel Booking API",
                 Version = "v1",
-                Description = "API for Hotel Booking System"
+                Description = "API for Hotel Booking System with MongoDB"
             });
         });
 
