@@ -1,0 +1,15 @@
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Application/bin/Debug/net9.0/HotelBooking.Application.deps.json
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Application/bin/Debug/net9.0/HotelBooking.Application.dll
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Application/bin/Debug/net9.0/HotelBooking.Application.pdb
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Application/bin/Debug/net9.0/HotelBooking.Domain.dll
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Application/bin/Debug/net9.0/HotelBooking.Domain.pdb
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Application/obj/Debug/net9.0/HotelBooking.Application.csproj.AssemblyReference.cache
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Application/obj/Debug/net9.0/HotelBooking.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Application/obj/Debug/net9.0/HotelBooking.Application.AssemblyInfoInputs.cache
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Application/obj/Debug/net9.0/HotelBooking.Application.AssemblyInfo.cs
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Application/obj/Debug/net9.0/HotelBooking.Application.csproj.CoreCompileInputs.cache
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Application/obj/Debug/net9.0/HotelBoo.0ED144E9.Up2Date
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Application/obj/Debug/net9.0/HotelBooking.Application.dll
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Application/obj/Debug/net9.0/refint/HotelBooking.Application.dll
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Application/obj/Debug/net9.0/HotelBooking.Application.pdb
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Application/obj/Debug/net9.0/ref/HotelBooking.Application.dll

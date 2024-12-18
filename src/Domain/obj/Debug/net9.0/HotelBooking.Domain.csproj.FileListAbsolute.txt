@@ -1,0 +1,11 @@
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Domain/obj/Debug/net9.0/HotelBooking.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Domain/obj/Debug/net9.0/HotelBooking.Domain.AssemblyInfoInputs.cache
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Domain/obj/Debug/net9.0/HotelBooking.Domain.AssemblyInfo.cs
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Domain/obj/Debug/net9.0/HotelBooking.Domain.csproj.CoreCompileInputs.cache
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Domain/bin/Debug/net9.0/HotelBooking.Domain.deps.json
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Domain/bin/Debug/net9.0/HotelBooking.Domain.dll
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Domain/bin/Debug/net9.0/HotelBooking.Domain.pdb
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Domain/obj/Debug/net9.0/HotelBooking.Domain.dll
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Domain/obj/Debug/net9.0/refint/HotelBooking.Domain.dll
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Domain/obj/Debug/net9.0/HotelBooking.Domain.pdb
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Domain/obj/Debug/net9.0/ref/HotelBooking.Domain.dll

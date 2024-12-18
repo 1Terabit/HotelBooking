@@ -1,0 +1,17 @@
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Infrastructure/obj/Debug/net9.0/HotelBooking.Infrastructure.csproj.AssemblyReference.cache
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Infrastructure/obj/Debug/net9.0/HotelBooking.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Infrastructure/obj/Debug/net9.0/HotelBooking.Infrastructure.AssemblyInfoInputs.cache
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Infrastructure/obj/Debug/net9.0/HotelBooking.Infrastructure.AssemblyInfo.cs
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Infrastructure/obj/Debug/net9.0/HotelBooking.Infrastructure.csproj.CoreCompileInputs.cache
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Infrastructure/bin/Debug/net9.0/HotelBooking.Infrastructure.deps.json
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Infrastructure/bin/Debug/net9.0/HotelBooking.Infrastructure.dll
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Infrastructure/bin/Debug/net9.0/HotelBooking.Infrastructure.pdb
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Infrastructure/bin/Debug/net9.0/HotelBooking.Application.dll
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Infrastructure/bin/Debug/net9.0/HotelBooking.Domain.dll
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Infrastructure/bin/Debug/net9.0/HotelBooking.Domain.pdb
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Infrastructure/bin/Debug/net9.0/HotelBooking.Application.pdb
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Infrastructure/obj/Debug/net9.0/HotelBoo.8CD6D998.Up2Date
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Infrastructure/obj/Debug/net9.0/HotelBooking.Infrastructure.dll
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Infrastructure/obj/Debug/net9.0/refint/HotelBooking.Infrastructure.dll
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Infrastructure/obj/Debug/net9.0/HotelBooking.Infrastructure.pdb
+/Users/anthwam/Documents/Practicas/HotelBooking/src/Infrastructure/obj/Debug/net9.0/ref/HotelBooking.Infrastructure.dll
